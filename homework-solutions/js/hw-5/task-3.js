@@ -3,19 +3,24 @@
  * Переменная `word` уже создана и содержит строку со словом.
  * Ожидаемый результат для `hello`: "hello contains 2 vowels and 3 consonants".
  */
+
 const word = 'hello';
+const trimmedAndLoweredString = word.trim().toLowerCase();
 let countOfVowels = 0;
 let countOfConsonants = 0;
-
+const vowels = 'aeiou';
+const consonants = 'bcdfghjklmnpqrstvwxyz';
 let vowelsAndConsonantsResult = '';
-for (let i = 0; i <= 4; i++) {
-    if (word[i].includes('e') || word[i].includes('o')) {
+
+for (let i = 0; i < trimmedAndLoweredString.length; i++) {
+    if (vowels.includes(trimmedAndLoweredString[i])) {
         countOfVowels = ++countOfVowels;
     }
-    else if (word[i].includes('h') || word[i].includes('l')) {
+
+    else if (consonants.includes(trimmedAndLoweredString[i])) {
         countOfConsonants = ++countOfConsonants;
     }
 }
-vowelsAndConsonantsResult = `hello contains ${countOfVowels} vowels and ${countOfConsonants} consonants`;
+vowelsAndConsonantsResult = `${word} contains ${countOfVowels} vowels and ${countOfConsonants} consonants`;
 console.log(vowelsAndConsonantsResult);
 export { vowelsAndConsonantsResult };
