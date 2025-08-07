@@ -15,5 +15,39 @@
 
 let resultUnique;
 let resultNull;
+const competitorPizzas = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai']
+const myPizzasT1 = ['Peperoni', 'Margherita', 'Diablo', 'Vegetarian'];
+const myPizzasT2 = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
+resultUnique = [];
+resultNull = [];
+let uniqueCounter = 0;
+for (const myPizza of myPizzasT1) {
+  if (competitorPizzas.indexOf(myPizza) === -1) {
+    resultUnique.push(myPizza);
+    uniqueCounter++;
+  }
+}
+if (!uniqueCounter) {
+  resultNull = null;
+}
+
+uniqueCounter = 0;
+
+
+for (const myPizza of myPizzasT2) {
+  if (competitorPizzas.indexOf(myPizza) === -1) {
+    resultUnique.push(myPizza);
+    uniqueCounter++;
+  }
+}
+
+if (!uniqueCounter) {
+  resultNull = null;
+}
+
+
+
+console.log('Уникальный массив', resultUnique);
+console.log('Нуловый', resultNull);
 
 export { resultNull, resultUnique };
