@@ -6,7 +6,7 @@
 
 let evenNumbersResult = '';
 
-for (let i = 10; i <= 10 && i >= 0; i--) {
+for (let i = 10; i >= 0; i--) {
     if (i % 2 === 0) {
         evenNumbersResult = evenNumbersResult + i + "-";
     };
