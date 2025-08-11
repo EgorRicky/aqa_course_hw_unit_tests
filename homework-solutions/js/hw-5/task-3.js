@@ -14,13 +14,13 @@ let vowelsAndConsonantsResult = '';
 
 for (let i = 0; i < trimmedAndLoweredString.length; i++) {
     if (vowels.includes(trimmedAndLoweredString[i])) {
-        countOfVowels = ++countOfVowels;
+        countOfVowels++;
     }
 
     else if (consonants.includes(trimmedAndLoweredString[i])) {
-        countOfConsonants = ++countOfConsonants;
+        countOfConsonants++;
     }
 }
 vowelsAndConsonantsResult = `${word} contains ${countOfVowels} vowels and ${countOfConsonants} consonants`;
 console.log(vowelsAndConsonantsResult);
-export { vowelsAndConsonantsResult };
+// export { vowelsAndConsonantsResult };
