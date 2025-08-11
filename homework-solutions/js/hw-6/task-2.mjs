@@ -21,8 +21,13 @@ const myPizzasT2 = ['Peperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawai'];
 resultUnique = [];
 resultNull = [];
 let uniqueCounter = 0;
+let competitorPizzasToLowerCase = [];
+for (let i = 0; i < competitorPizzas.length; i++) {
+  competitorPizzasToLowerCase.push(competitorPizzas[i].toLowerCase());
+}
+
 for (const myPizza of myPizzasT1) {
-  if (competitorPizzas.indexOf(myPizza) === -1) {
+  if (competitorPizzasToLowerCase.indexOf(myPizza.toLowerCase()) === -1) {
     resultUnique.push(myPizza);
     uniqueCounter++;
   }
@@ -35,7 +40,7 @@ uniqueCounter = 0;
 
 
 for (const myPizza of myPizzasT2) {
-  if (competitorPizzas.indexOf(myPizza) === -1) {
+  if (competitorPizzasToLowerCase.indexOf(myPizza.toLowerCase()) === -1) {
     resultUnique.push(myPizza);
     uniqueCounter++;
   }
