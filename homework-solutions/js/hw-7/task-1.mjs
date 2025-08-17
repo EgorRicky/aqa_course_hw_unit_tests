@@ -5,8 +5,8 @@
   - Например: mergeArrays([1,2], [3,4], [5,6]) // [1,2,3,4,5,6]
   - Решить с использованием Spread operator
 */
-function mergeArrays() {
-  // Ваш код
+function mergeArrays(...arr) {
+  return [].concat(...arr);
 }
 /*
   2. Devide by _
