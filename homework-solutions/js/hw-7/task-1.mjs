@@ -45,7 +45,19 @@ function devideBy(sentence) {
     - Например fibonacci(8) //21
   */
 function fibonacci(n) {
-  // Ваш код
+  const arr = [0, 1];
+  if (n < 2) {
+    return arr[n];
+  }
+  else {
+    for (let i = 2; i <= n; i++) {
+      let firstDig = arr[i - 2];
+      let secondDig = arr[i - 1];
+      let resDig = firstDig + secondDig;
+      arr.push(resDig);
+    }
+    return arr[n];
+  }
 }
 
 export { mergeArrays, fibonacci, devideBy };
