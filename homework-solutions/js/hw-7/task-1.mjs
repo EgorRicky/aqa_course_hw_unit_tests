@@ -28,7 +28,7 @@ function devideBy(sentence) {
   }
   const wordsStartWithUpperCase = [];
   for (let i = 1; i < toLowerCaseWords.length; i++) {
-    const newWord = toLowerCaseWords[i][0].toUpperCase() + toLowerCaseWords[i].slice(1).toLowerCase();
+    const newWord = toLowerCaseWords[i][0].toUpperCase() + toLowerCaseWords[i].slice(1);
     wordsStartWithUpperCase.push(newWord);
   }
   const newSentenceArr = [toLowerCaseWords[0], ...wordsStartWithUpperCase];
@@ -49,15 +49,13 @@ function fibonacci(n) {
   if (n < 2) {
     return arr[n];
   }
-  else {
-    for (let i = 2; i <= n; i++) {
-      let firstDig = arr[i - 2];
-      let secondDig = arr[i - 1];
-      let resDig = firstDig + secondDig;
-      arr.push(resDig);
-    }
-    return arr[n];
+  for (let i = 2; i <= n; i++) {
+    let firstDig = arr[i - 2];
+    let secondDig = arr[i - 1];
+    let resDig = firstDig + secondDig;
+    arr.push(resDig);
   }
+  return arr[n];
 }
 
 export { mergeArrays, fibonacci, devideBy };
