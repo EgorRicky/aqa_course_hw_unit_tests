@@ -14,9 +14,22 @@
 */
 const numbers = [7, 8, 2, 30, 85, 95, 77, 94, 37, 31];
 
-let forEach;
-let map;
+let forEach = [];
+numbers.forEach((el, i, arr) => {
+   if (el % 3 === 0) {
+      forEach.push(el)
+   }
+   return forEach;
+})
+
+let map = numbers.map((el, i, arr) => {
+   return el - numbers.length;
+})
+
+
 let filter;
+
+
 let find;
 let sort;
 let reduce;
