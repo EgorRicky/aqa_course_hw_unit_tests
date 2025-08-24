@@ -27,13 +27,21 @@ let map = numbers.map((el, i, arr) => {
 })
 
 
-let filter;
+let filter = numbers.filter((el, i, arr) => {
+   if (i > 0 && el > arr[i - 1]) { return true }
+})
 
 
-let find;
-let sort;
-let reduce;
-let some;
-let every;
+let find = numbers.find((el, i, arr) => {
+   return el === i;
+})
+
+let sort = [...numbers].sort((a, b) => a - b);
+
+let reduce = numbers.reduce((result, el) => el += result, 0)
+
+let some = numbers.some((el) => el > 90);
+
+let every = numbers.every((el) => el.toString().length === 2)
 
 export { forEach, map, filter, find, sort, reduce, some, every };
