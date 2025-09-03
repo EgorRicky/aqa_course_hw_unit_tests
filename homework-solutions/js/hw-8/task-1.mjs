@@ -15,14 +15,14 @@
 const numbers = [7, 8, 2, 30, 85, 95, 77, 94, 37, 31];
 
 let forEach = [];
-numbers.forEach((el, i, arr) => {
+numbers.forEach((el) => {
    if (el % 3 === 0) {
       forEach.push(el)
    }
    return forEach;
 })
 
-let map = numbers.map((el, i, arr) => {
+let map = numbers.map((el) => {
    return el - numbers.length;
 })
 

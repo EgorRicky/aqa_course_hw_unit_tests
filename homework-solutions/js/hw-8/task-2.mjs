@@ -3,7 +3,12 @@
   Напишите функцию, которая принимает на вход массив слов и
   возвращает отсортированный массив по следующему критерию: количество гласных букв.
   Массив должен быть отсортирован по возрастанию количества гласных букв в слове.
+  1. пройтись по каждому элементу массива
+  2. вернуть количество гласных в каждом элементе
+  3. 
  */
+
+
 
 const words = [
   'umbrella',
@@ -18,8 +23,20 @@ const words = [
   'queue',
 ];
 
+
 function sortedByVowels(wordsArr) {
-  // Ваш код
+  const vowels = "aeiou";
+
+  function countVowels(word) {
+    let count = 0;
+    for (const letter of word.toLowerCase()) {
+      if (vowels.includes(letter)) { count++ };
+    }
+    return count;
+  }
+
+  return [...wordsArr].sort((a, b) => countVowels(a) - countVowels(b));
+
 }
 
 export { sortedByVowels };
