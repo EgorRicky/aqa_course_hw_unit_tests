@@ -13,6 +13,15 @@ const characters = [
   { name: 'Jack', age: 49 },
 ];
 
+function getCharactersByAge(minAge) {
+  if (typeof minAge != "number") { throw new Error };
+  const newArr = [];
+  for (const char of characters) {
+    if (Object.values(char)[1] >= minAge) { newArr.push(char) }
+  }
+  return newArr;
+}
+
 function getCharacter(name) {
   for (const char of characters) {
     if (Object.values(char).find(el => el === name)) { return char }
@@ -26,16 +35,20 @@ function addCharacter(character) {
 }
 
 
-function getCharactersByAge(minAge) {
-  // Ваш код
-}
-
 function updateCharacter(name, newCharacter) {
-  // Ваш код
+  const linkToNewChar = getCharacter(name);
+  linkToNewChar.name = newCharacter.name;
+  linkToNewChar.age = newCharacter.age;
+  return characters;
 }
 
 function removeCharacter(name) {
-  // Ваш код
+  const indexOfChar = characters.findIndex(el => el.name === name);
+  if (indexOfChar === -1) { throw new Error }
+  else {
+    characters.splice(indexOfChar, 1)
+  }
+  return characters;
 }
 
 export { characters, addCharacter, updateCharacter, getCharacter, getCharactersByAge, removeCharacter };
