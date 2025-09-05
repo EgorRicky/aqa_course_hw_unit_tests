@@ -9,17 +9,22 @@
 
 const characters = [
   { name: 'Barney', age: 35 },
-  { name: 'Fred', age: 39 },
+  { name: 'Fred', age: 40 },
   { name: 'Jack', age: 49 },
 ];
 
-function addCharacter(character) {
-  // Ваш код
+function getCharacter(name) {
+  for (const char of characters) {
+    if (Object.values(char).find(el => el === name)) { return char }
+  }
 }
 
-function getCharacter(name) {
-  // Ваш код
+function addCharacter(character) {
+  if (typeof character !== 'object' || character == null || Array.isArray(character)) { throw new Error };
+  if (!("name" in character) || !("age" in character)) { throw new Error }
+  characters.push(character);
 }
+
 
 function getCharactersByAge(minAge) {
   // Ваш код
