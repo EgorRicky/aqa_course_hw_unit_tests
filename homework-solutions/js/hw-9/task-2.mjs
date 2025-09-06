@@ -9,28 +9,46 @@
 
 const characters = [
   { name: 'Barney', age: 35 },
-  { name: 'Fred', age: 39 },
+  { name: 'Fred', age: 40 },
   { name: 'Jack', age: 49 },
 ];
 
-function addCharacter(character) {
-  // Ваш код
+function getCharactersByAge(minAge) {
+  if (typeof minAge != "number") { throw new Error };
+  const newArr = [];
+  for (const char of characters) {
+    if (Object.values(char)[1] >= minAge) { newArr.push(char) }
+  }
+  return newArr;
 }
 
 function getCharacter(name) {
-  // Ваш код
+  for (const char of characters) {
+    if (Object.values(char).find(el => el === name)) { return char }
+  }
 }
 
-function getCharactersByAge(minAge) {
-  // Ваш код
+function addCharacter(character) {
+  if (typeof character !== 'object' || character == null || Array.isArray(character)) { throw new Error };
+  if (!("name" in character) || !("age" in character)) { throw new Error }
+  characters.push(character);
 }
+
 
 function updateCharacter(name, newCharacter) {
-  // Ваш код
+  const linkToNewChar = getCharacter(name);
+  linkToNewChar.name = newCharacter.name;
+  linkToNewChar.age = newCharacter.age;
+  return characters;
 }
 
 function removeCharacter(name) {
-  // Ваш код
+  const indexOfChar = characters.findIndex(el => el.name === name);
+  if (indexOfChar === -1) { throw new Error }
+  else {
+    characters.splice(indexOfChar, 1)
+  }
+  return characters;
 }
 
 export { characters, addCharacter, updateCharacter, getCharacter, getCharactersByAge, removeCharacter };
