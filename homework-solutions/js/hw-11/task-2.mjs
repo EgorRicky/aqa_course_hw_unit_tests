@@ -4,11 +4,19 @@ class Employee {
     this.firstName = firstName;
     this.lastName = lastName;
     this.profession = profession;
-    this.#salary = salary;
+    this.salary = salary;
   }
 
-  #validateInput(input) {
+  #validateNameInput(input) {
+    if (typeof input !== 'string' || input.length < 2 || input.length > 50) { return false }
+    for (let i = 0; i < input.length; i++) {
+      const charCode = input.charCodeAt(i);
+      const upperChars = charCode >= 65 && charCode <= 90;
+      const lowerChars = charCode >= 97 && charCode <= 122;
 
+      if (!upperChars && !lowerChars) { return false }
+    }
+    return true
   }
 
   get firstName() {
@@ -16,7 +24,7 @@ class Employee {
   }
 
   set firstName(value) {
-    if (typeof value !== "string" || value.length <= 2) throw new Error;
+    if (!this.#validateNameInput(value)) throw new Error;
     this._firstName = value;
   }
 
@@ -25,7 +33,7 @@ class Employee {
   }
 
   set lastName(value) {
-    if (typeof value !== "string" || value.length <= 2) throw new Error;
+    if (!this.#validateNameInput(value)) throw new Error;
     this._lastName = value;
   }
 
@@ -34,7 +42,15 @@ class Employee {
   }
 
   set profession(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== 'string' || value.length === 0) throw new Error;
+    for (let i = 0; i < value.length; i++) {
+      const charCode = value.charCodeAt(i);
+      const upperChars = charCode >= 65 && charCode <= 90;
+      const lowerChars = charCode >= 97 && charCode <= 122;
+      const spaceChar = charCode === 32;
+      if (!upperChars && !lowerChars && !spaceChar) { throw new Error }
+    }
+    if (value.trim() === "") throw new Error;
     this._profession = value;
   }
 
@@ -43,7 +59,7 @@ class Employee {
   }
 
   set salary(value) {
-    if (typeof value !== "number" || value <= 0) throw new Error;
+    if (typeof value !== "number" || value <= 0 || value >= 10000 || isNaN(value)) throw new Error;
     this.#salary = value;
   }
 
@@ -80,7 +96,6 @@ class Company {
   }
 
   set phone(value) {
-    if (typeof value !== "number") throw new Error;
     this._phone = value
   }
 
@@ -122,8 +137,8 @@ class Company {
   }
 
   getTotalSalary() {
-    if (this.#employees == []) throw new Error;
-    else return this.#employees.reduce((acc, el) => acc += el.salary, 0)
+    if (this.#employees.length === 0) { return 0 }
+    else { return this.#employees.reduce((acc, el) => acc + el.salary, 0) }
   }
 }
 
