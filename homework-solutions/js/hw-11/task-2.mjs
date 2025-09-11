@@ -24,7 +24,7 @@ class Employee {
   }
 
   set firstName(value) {
-    if (!this.#validateNameInput(value)) throw new Error;
+    if (!this.#validateNameInput(value)) throw new Error('invalid input');
     this._firstName = value;
   }
 
@@ -33,7 +33,7 @@ class Employee {
   }
 
   set lastName(value) {
-    if (!this.#validateNameInput(value)) throw new Error;
+    if (!this.#validateNameInput(value)) throw new Error('invalid input');
     this._lastName = value;
   }
 
@@ -42,15 +42,15 @@ class Employee {
   }
 
   set profession(value) {
-    if (typeof value !== 'string' || value.length === 0) throw new Error;
+    if (typeof value !== 'string' || value.length === 0) throw new Error('invalid input');
     for (let i = 0; i < value.length; i++) {
       const charCode = value.charCodeAt(i);
       const upperChars = charCode >= 65 && charCode <= 90;
       const lowerChars = charCode >= 97 && charCode <= 122;
       const spaceChar = charCode === 32;
-      if (!upperChars && !lowerChars && !spaceChar) { throw new Error }
+      if (!upperChars && !lowerChars && !spaceChar) { throw new Error('invalid input') }
     }
-    if (value.trim() === "") throw new Error;
+    if (value.trim() === "") throw new Error('invalid input');
     this._profession = value;
   }
 
@@ -59,7 +59,7 @@ class Employee {
   }
 
   set salary(value) {
-    if (typeof value !== "number" || value <= 0 || value >= 10000 || isNaN(value)) throw new Error;
+    if (typeof value !== "number" || value <= 0 || value >= 10000 || isNaN(value)) throw new Error('invalid input');
     this.#salary = value;
   }
 
@@ -71,11 +71,11 @@ class Employee {
 
 class Company {
   #employees;
-  constructor(title, phone, address, employees = []) {
+  constructor(title, phone, address) {
     this.title = title;
     this.phone = phone;
     this.address = address;
-    this.#employees = employees;
+    this.#employees = [];
   }
 
   get title() {
@@ -91,7 +91,7 @@ class Company {
   }
 
   set title(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== "string") throw new Error('invalid input');
     this._title = value;
   }
 
@@ -100,13 +100,13 @@ class Company {
   }
 
   set address(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== "string") throw new Error('invalid input');
     this._address = value;
   }
 
   addEmployee(employee) {
     if (employee instanceof Employee) this.#employees.push(employee);
-    else throw new Error;
+    else throw new Error('invalid input');
   }
 
   getEmployees() {
@@ -119,21 +119,18 @@ class Company {
 
   findEmployeeByName(firstName) {
     const employee = this.#employees.find(el => el.firstName === firstName);
-    if (!employee) throw new Error;
+    if (!employee) throw new Error('invalid input');
     return employee;
   }
 
   #getEmployeeIndex(firstName) {
     const index = this.#employees.findIndex(el => el.firstName === firstName);
-    if (index === -1) throw new Error;
+    if (index === -1) throw new Error('invalid input');
     return index;
   }
 
   removeEmployee(firstName) {
-    if (this.#employees.find(el => el.firstName === firstName)) {
-      this.#employees.splice(this.#getEmployeeIndex(firstName), 1)
-    }
-    else throw new Error;
+    this.#employees.splice(this.#getEmployeeIndex(firstName), 1);
   }
 
   getTotalSalary() {

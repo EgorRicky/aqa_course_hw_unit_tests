@@ -4,7 +4,7 @@ class Employee {
     this.firstName = firstName;
     this.lastName = lastName;
     this.profession = profession;
-    this.#salary = salary;
+    this.salary = salary;
   }
 
   get firstName() {
@@ -12,7 +12,7 @@ class Employee {
   }
 
   set firstName(value) {
-    if (typeof value !== "string" || value.length <= 2) throw new Error;
+    if (typeof value !== "string" || value.length <= 2) throw new Error('invalid first name');
     this._firstName = value;
   }
 
@@ -21,7 +21,7 @@ class Employee {
   }
 
   set lastName(value) {
-    if (typeof value !== "string" || value.length <= 2) throw new Error;
+    if (typeof value !== "string" || value.length <= 2) throw new Error('invalid last name');
     this._lastName = value;
   }
 
@@ -30,7 +30,7 @@ class Employee {
   }
 
   set profession(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== "string") throw new Error('invalid input');
     this._profession = value;
   }
 
@@ -39,7 +39,7 @@ class Employee {
   }
 
   set salary(value) {
-    if (typeof value !== "number" || value <= 0) throw new Error;
+    if (typeof value !== "number" || value <= 0) throw new Error('invalid input');
     this.#salary = value;
   }
 
@@ -51,11 +51,11 @@ class Employee {
 
 class Company {
   #employees;
-  constructor(title, phone, address, employees = []) {
+  constructor(title, phone, address) {
     this.title = title;
     this.phone = phone;
     this.address = address;
-    this.#employees = employees;
+    this.#employees = [];
   }
 
   get title() {
@@ -71,17 +71,17 @@ class Company {
   }
 
   set title(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== "string") throw new Error('invalid input');
     this._title = value;
   }
 
   set phone(value) {
-    if (typeof value !== "number") throw new Error;
+    if (typeof value !== "number") throw new Error('invalid input');
     this._phone = value
   }
 
   set address(value) {
-    if (typeof value !== "string") throw new Error;
+    if (typeof value !== "string") throw new Error('invalid input');
     this._address = value;
   }
 
