@@ -6,3 +6,13 @@
    Пример:
    map([1,2,3,4,5], callback) => [0,2,6,12,20]
 */
+
+function map<T, U>(array: T[], callback: (element: T, index: number, array: T[]) => U) {
+   let mapArr: U[] = [];
+   for (let i = 0; i < array.length; i++) {
+      mapArr.push(callback(array[i], i, array));
+   }
+   return mapArr;
+}
+
+console.log(map([1, 2, 3, 4, 5], (el, index) => el * index))
